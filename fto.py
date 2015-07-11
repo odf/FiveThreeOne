@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+
 def rounded(amount, unit = 1):
     t = amount + unit /2
     return t - t % unit
 
 
 def value(tm, percentage, unit = 2.5):
-    return rounded(tm * percentage / 100.0, unit)
+    return rounded(tm / 0.95 * percentage / 100.0, unit)
 
 
 def block(tm, percentages, unit = 2.5):
