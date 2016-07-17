@@ -13,9 +13,9 @@ def block(tm, percentages, unit = 2.5):
     return map(lambda p: value(tm, p, unit), percentages)
 
 
-def print_block(tm, name, percentages, reps, unit = 2.5):
+def print_block(exercise, tm, name, percentages, reps, unit = 2.5):
     out = []
-    out.append('%-10s' % name)
+    out.append('%-12s %-10s' % (exercise, name))
 
     weights = block(tm, percentages, unit)
     for i in range(len(weights)):
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     import sys
 
     tms = map(float, sys.argv[1:])
-    exercises = ('OHP', 'Deadlift', 'Bench Press', 'Squats')
+    exercises = ('OHP', 'Deadlift', 'Bench', 'Squat')
 
     print 'TMs:',
     for i in range(len(exercises)):
@@ -46,12 +46,12 @@ if __name__ == '__main__':
     print
 
     for week in range(1, 5):
+        print 'Week %d' % week
+        print
         for i in range(len(exercises)):
-            print 'Week %d %s' % (week, exercises[i])
-            print
-            for name in ('Warm Up', 'Week %d' % week):
+            for ex, name in ((exercises[i], 'Warm Up'), ('', 'Week %d' % week)):
                 specs = block_specs[name]
-                print print_block(tms[i], name, specs[0], specs[1], 2.5)
+                print print_block(ex, tms[i], name, specs[0], specs[1], 2.5)
             print
-            print
+        print
 
