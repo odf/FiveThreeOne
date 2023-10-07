@@ -10,7 +10,7 @@ def value(tm, percentage, unit = 2.5):
 
 
 def block(tm, percentages, unit = 2.5):
-    return map(lambda p: value(tm, p, unit), percentages)
+    return [value(tm, p, unit) for p in  percentages]
 
 
 def print_block(exercise, tm, name, percentages, reps, unit = 2.5):
@@ -36,25 +36,25 @@ block_specs = {
 if __name__ == '__main__':
     import sys
 
-    tms = map(float, sys.argv[1:])
+    tms = [float(x) for x in sys.argv[1:]]
     exercises = ('Deadlift', 'Bench', 'Squat', 'OHP')
     units = (2.5, 2.5, 2.5, 1.0)
 
-    print 'TMs:',
+    print('TMs:', end=' ')
     for i in range(len(exercises)):
-        print exercises[i], '%.1fkg' % tms[i],
-    print
-    print
+        print(exercises[i], '%.1fkg' % tms[i], end=' ')
+    print()
+    print()
 
     for week in range(1, 5):
-        print 'Week %d' % week
-        print
+        print('Week %d' % week)
+        print()
         for i in range(len(exercises)):
             for ex, unit, name in (
                 (exercises[i], 5, 'Warm Up'),
                 ('', units[i], 'Week %d' % week)
             ):
                 specs = block_specs[name]
-                print print_block(ex, tms[i], name, specs[0], specs[1], unit)
-            print
-        print
+                print(print_block(ex, tms[i], name, specs[0], specs[1], unit))
+            print()
+        print()
