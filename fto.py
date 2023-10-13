@@ -38,7 +38,8 @@ if __name__ == '__main__':
 
     tms = [float(x) for x in sys.argv[1:]]
     exercises = ('Deadlift', 'Bench', 'Squat', 'OHP')
-    units = (2.5, 2.5, 2.5, 1.0)
+    units = (2.5, 2.5, 2.5, 2.5)
+    #units = (2.5, 2.5, 2.5, 1.0)
 
     print('TMs:', end=' ')
     for i in range(len(exercises)):
